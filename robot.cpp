@@ -6,38 +6,38 @@ struct s_coordenada {
     float y;
 };
 
-struct s_robotVertex {
-    s_coordenada head[4];
-    s_coordenada body[4];
-    s_coordenada leftArm[4];
-    s_coordenada rightArm[4];
-    s_coordenada leftLeg[4];
-    s_coordenada rightLeg[4];
+struct s_robotVertices {
+    s_coordenada cabeca[4];
+    s_coordenada corpo[4];
+    s_coordenada bracoEsq[4];
+    s_coordenada bracoDir[4];
+    s_coordenada pernaEsq[4];
+    s_coordenada pernaDir[4];
 } robot = {
-    {{-1.0, 1.0}, {1.0, 1.0}, {1.0, -1.0}, {-1.0, -1.0}},
-    {{-1.5, -1.5}, {1.5, -1.5}, {1.5, -7.5}, {-1.5, -7.5}},
-    {{-3.0, -1.5}, {-2.0, -1.5}, {-2.0, -5.5}, {-3.0, -5.5}},
-    {{3.0, -1.5}, {2.0, -1.5}, {2.0, -5.5}, {3.0, -5.5}},
-    {{-1.5, -8.0}, {-0.5, -8.0}, {-0.5, -12.0}, {-1.5, -12.0}},
-    {{1.5, -8.0}, {0.5, -8.0}, {0.5, -12.0}, {1.5, -12.0}},
+    {{-1.0, 1.0}, {1.0, 1.0}, {1.0, -1.0}, {-1.0, -1.0}},       // Os pontos dos vertices da cabeça do robot.
+    {{-1.5, -1.5}, {1.5, -1.5}, {1.5, -7.5}, {-1.5, -7.5}},     // Os pontos dos vertices do corpo do robot.
+    {{-3.0, -1.5}, {-2.0, -1.5}, {-2.0, -5.5}, {-3.0, -5.5}},   // Os pontos dos vertices do braço esquerdo do robot.
+    {{3.0, -1.5}, {2.0, -1.5}, {2.0, -5.5}, {3.0, -5.5}},       // Os pontos dos vertices do braço direito do robot.
+    {{-1.5, -8.0}, {-0.5, -8.0}, {-0.5, -12.0}, {-1.5, -12.0}}, // Os pontods dos vertices da perna esquerda do robot.
+    {{1.5, -8.0}, {0.5, -8.0}, {0.5, -12.0}, {1.5, -12.0}},     // Os pontos dos vertices da perna direita do robot.
 };
 
-struct s_rgbValues {
+struct s_rgbValores {
     float r;
     float g;
     float b;
 };
 
 struct s_coresRobot {
-    s_rgbValues head;
-    s_rgbValues body;
-    s_rgbValues arms;
-    s_rgbValues legs;
+    s_rgbValores cabeca;
+    s_rgbValores corpo;
+    s_rgbValores bracos;
+    s_rgbValores pernas;
 } cores = {
-    {0.9, 0.8, 0.7},
-    {0, 0, 1},
-    {1, 0, 0},
-    {1, 1, 0}
+    {0.9, 0.8, 0.7},    // Cor de pele clara.
+    {0, 0, 1},          // Cor azul. 
+    {1, 0, 0},          // Cor vermelha.
+    {1, 1, 0}           // Cor amarela.
 };
 
 void init();
@@ -76,13 +76,13 @@ void draw() {
     // Cabeça
     glPushMatrix();
 
-    glColor3f(cores.head.r, cores.head.g, cores.head.b);
+    glColor3f(cores.cabeca.r, cores.cabeca.g, cores.cabeca.b);
 
     glBegin(GL_QUADS);
-        glVertex2f(robot.head[0].x, robot.head[0].y);
-        glVertex2f(robot.head[1].x, robot.head[1].y);
-        glVertex2f(robot.head[2].x, robot.head[2].y);
-        glVertex2f(robot.head[3].x, robot.head[3].y);
+        glVertex2f(robot.cabeca[0].x, robot.cabeca[0].y);
+        glVertex2f(robot.cabeca[1].x, robot.cabeca[1].y);
+        glVertex2f(robot.cabeca[2].x, robot.cabeca[2].y);
+        glVertex2f(robot.cabeca[3].x, robot.cabeca[3].y);
     glEnd();
 
     glPopMatrix();
@@ -90,13 +90,13 @@ void draw() {
     // Corpo
     glPushMatrix();
 
-    glColor3f(cores.body.r, cores.body.g, cores.body.b);
+    glColor3f(cores.corpo.r, cores.corpo.g, cores.corpo.b);
 
     glBegin(GL_QUADS);
-        glVertex2f(robot.body[0].x, robot.body[0].y);
-        glVertex2f(robot.body[1].x, robot.body[1].y);
-        glVertex2f(robot.body[2].x, robot.body[2].y);
-        glVertex2f(robot.body[3].x, robot.body[3].y);
+        glVertex2f(robot.corpo[0].x, robot.corpo[0].y);
+        glVertex2f(robot.corpo[1].x, robot.corpo[1].y);
+        glVertex2f(robot.corpo[2].x, robot.corpo[2].y);
+        glVertex2f(robot.corpo[3].x, robot.corpo[3].y);
     glEnd();
 
     glPopMatrix();
@@ -104,13 +104,13 @@ void draw() {
     // Braço Esquerdo
     glPushMatrix();
 
-    glColor3f(cores.arms.r, cores.arms.g, cores.arms.b);
+    glColor3f(cores.bracos.r, cores.bracos.g, cores.bracos.b);
 
     glBegin(GL_QUADS);
-        glVertex2f(robot.leftArm[0].x, robot.leftArm[0].y);
-        glVertex2f(robot.leftArm[1].x, robot.leftArm[1].y);
-        glVertex2f(robot.leftArm[2].x, robot.leftArm[2].y);
-        glVertex2f(robot.leftArm[3].x, robot.leftArm[3].y);
+        glVertex2f(robot.bracoEsq[0].x, robot.bracoEsq[0].y);
+        glVertex2f(robot.bracoEsq[1].x, robot.bracoEsq[1].y);
+        glVertex2f(robot.bracoEsq[2].x, robot.bracoEsq[2].y);
+        glVertex2f(robot.bracoEsq[3].x, robot.bracoEsq[3].y);
     glEnd();
 
     glPopMatrix();
@@ -118,13 +118,13 @@ void draw() {
     // Braço Direito
     glPushMatrix();
 
-    glColor3f(cores.arms.r, cores.arms.g, cores.arms.b);
+    glColor3f(cores.bracos.r, cores.bracos.g, cores.bracos.b);
 
     glBegin(GL_QUADS);
-        glVertex2f(robot.rightArm[0].x, robot.rightArm[0].y);
-        glVertex2f(robot.rightArm[1].x, robot.rightArm[1].y);
-        glVertex2f(robot.rightArm[2].x, robot.rightArm[2].y);
-        glVertex2f(robot.rightArm[3].x, robot.rightArm[3].y);
+        glVertex2f(robot.bracoDir[0].x, robot.bracoDir[0].y);
+        glVertex2f(robot.bracoDir[1].x, robot.bracoDir[1].y);
+        glVertex2f(robot.bracoDir[2].x, robot.bracoDir[2].y);
+        glVertex2f(robot.bracoDir[3].x, robot.bracoDir[3].y);
     glEnd();
 
     glPopMatrix();
@@ -132,13 +132,13 @@ void draw() {
     // Perna Esquerda
     glPushMatrix();
 
-    glColor3f(cores.legs.r, cores.legs.g, cores.legs.b);
+    glColor3f(cores.pernas.r, cores.pernas.g, cores.pernas.b);
 
     glBegin(GL_QUADS);
-        glVertex2f(robot.leftLeg[0].x, robot.leftLeg[0].y);
-        glVertex2f(robot.leftLeg[1].x, robot.leftLeg[1].y);
-        glVertex2f(robot.leftLeg[2].x, robot.leftLeg[2].y);
-        glVertex2f(robot.leftLeg[3].x, robot.leftLeg[3].y);
+        glVertex2f(robot.pernaEsq[0].x, robot.pernaEsq[0].y);
+        glVertex2f(robot.pernaEsq[1].x, robot.pernaEsq[1].y);
+        glVertex2f(robot.pernaEsq[2].x, robot.pernaEsq[2].y);
+        glVertex2f(robot.pernaEsq[3].x, robot.pernaEsq[3].y);
     glEnd();
 
     glPopMatrix();
@@ -146,13 +146,13 @@ void draw() {
     // Perna Direita
     glPushMatrix();
 
-    glColor3f(cores.legs.r, cores.legs.g, cores.legs.b);
+    glColor3f(cores.pernas.r, cores.pernas.g, cores.pernas.b);
 
     glBegin(GL_QUADS);
-        glVertex2f(robot.rightLeg[0].x, robot.rightLeg[0].y);
-        glVertex2f(robot.rightLeg[1].x, robot.rightLeg[1].y);
-        glVertex2f(robot.rightLeg[2].x, robot.rightLeg[2].y);
-        glVertex2f(robot.rightLeg[3].x, robot.rightLeg[3].y);
+        glVertex2f(robot.pernaDir[0].x, robot.pernaDir[0].y);
+        glVertex2f(robot.pernaDir[1].x, robot.pernaDir[1].y);
+        glVertex2f(robot.pernaDir[2].x, robot.pernaDir[2].y);
+        glVertex2f(robot.pernaDir[3].x, robot.pernaDir[3].y);
     glEnd();
 
     glPopMatrix();
@@ -168,31 +168,31 @@ void mouseEvent(int button, int state, int x, int y) {
 
     if (button == GLUT_LEFT_BUTTON) {
         if (state == GLUT_DOWN) {
-            cores.arms.r = r;
-            cores.arms.g = g;
-            cores.arms.b = b;
+            cores.bracos.r = r;
+            cores.bracos.g = g;
+            cores.bracos.b = b;
 
             float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
             float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
             float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
-            cores.legs.r = r;
-            cores.legs.g = g;
-            cores.legs.b = b;
+            cores.pernas.r = r;
+            cores.pernas.g = g;
+            cores.pernas.b = b;
         }
     } else if (button == GLUT_RIGHT_BUTTON) {
         if (state == GLUT_DOWN) {
-            cores.head.r = r;
-            cores.head.g = g;
-            cores.head.b = b;
+            cores.cabeca.r = r;
+            cores.cabeca.g = g;
+            cores.cabeca.b = b;
 
             float r = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
             float g = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
             float b = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
-            cores.body.r = r;
-            cores.body.g = g;
-            cores.body.b = b;
+            cores.corpo.r = r;
+            cores.corpo.g = g;
+            cores.corpo.b = b;
         }
     }
 
@@ -204,47 +204,47 @@ void keyEvent(unsigned char key, int x, int y) {
     switch (key) {
         case 'm':
             for (int i = 0; i < 4; i++) {
-                robot.head[i].x++;
-                robot.body[i].x++;
-                robot.leftArm[i].x++;
-                robot.rightArm[i].x++;
-                robot.leftLeg[i].x++;
-                robot.rightLeg[i].x++;
+                robot.cabeca[i].x++;
+                robot.corpo[i].x++;
+                robot.bracoEsq[i].x++;
+                robot.bracoDir[i].x++;
+                robot.pernaEsq[i].x++;
+                robot.pernaDir[i].x++;
             }
             break;
         case 'M':
             for (int i = 0; i < 4; i++) {
-                robot.head[i].x--;
-                robot.body[i].x--;
-                robot.leftArm[i].x--;
-                robot.rightArm[i].x--;
-                robot.leftLeg[i].x--;
-                robot.rightLeg[i].x--;
+                robot.cabeca[i].x--;
+                robot.corpo[i].x--;
+                robot.bracoEsq[i].x--;
+                robot.bracoDir[i].x--;
+                robot.pernaEsq[i].x--;
+                robot.pernaDir[i].x--;
             }
             break;
         case 'i':
-            robot.rightArm[0].y++;
-            robot.rightArm[1].y++;
-            robot.rightArm[2].y++;
-            robot.rightArm[3].y++;
+            robot.bracoDir[0].y++;
+            robot.bracoDir[1].y++;
+            robot.bracoDir[2].y++;
+            robot.bracoDir[3].y++;
             break;
         case 'I':
-            robot.rightArm[0].y--;
-            robot.rightArm[1].y--;
-            robot.rightArm[2].y--;
-            robot.rightArm[3].y--;
+            robot.bracoDir[0].y--;
+            robot.bracoDir[1].y--;
+            robot.bracoDir[2].y--;
+            robot.bracoDir[3].y--;
             break;
         case 'p':
-            robot.leftArm[0].y++;
-            robot.leftArm[1].y++;
-            robot.leftArm[2].y++;
-            robot.leftArm[3].y++;
+            robot.bracoEsq[0].y++;
+            robot.bracoEsq[1].y++;
+            robot.bracoEsq[2].y++;
+            robot.bracoEsq[3].y++;
             break;
         case 'P':
-            robot.leftArm[0].y--;
-            robot.leftArm[1].y--;
-            robot.leftArm[2].y--;
-            robot.leftArm[3].y--;
+            robot.bracoEsq[0].y--;
+            robot.bracoEsq[1].y--;
+            robot.bracoEsq[2].y--;
+            robot.bracoEsq[3].y--;
             break;
         default:
             break;

@@ -43,9 +43,6 @@ struct s_coresRobot {
 int rotBracoEsq = 0;
 int rotBracoDir = 0;
 
-int bei = 0;
-int bdi = 0;
-
 void init();
 void draw();
 void mouseEvent(int, int, int, int);
@@ -112,9 +109,9 @@ void draw() {
 
     glColor3f(cores.bracos.r, cores.bracos.g, cores.bracos.b);
 
-    glTranslatef(robot.bracoEsq[bei].x, robot.bracoEsq[bei].y, 0);
+    glTranslatef(robot.bracoEsq[0].x, robot.bracoEsq[0].y, 0);
     glRotatef(rotBracoEsq, 0.0, 0.0, 1.0);
-    glTranslatef(-robot.bracoEsq[bei].x, -robot.bracoEsq[bei].y, 0);
+    glTranslatef(-robot.bracoEsq[0].x, -robot.bracoEsq[0].y, 0);
 
     glBegin(GL_QUADS);
         glVertex2f(robot.bracoEsq[0].x, robot.bracoEsq[0].y);
@@ -130,9 +127,9 @@ void draw() {
 
     glColor3f(cores.bracos.r, cores.bracos.g, cores.bracos.b);
 
-    glTranslatef(robot.bracoDir[bdi].x, robot.bracoDir[bdi].y, 0);
+    glTranslatef(robot.bracoDir[0].x, robot.bracoDir[0].y, 0);
     glRotatef(rotBracoDir, 0.0, 0.0, 1.0);
-    glTranslatef(-robot.bracoDir[bdi].x, -robot.bracoDir[bdi].y, 0);
+    glTranslatef(-robot.bracoDir[0].x, -robot.bracoDir[0].y, 0);
 
     glBegin(GL_QUADS);
         glVertex2f(robot.bracoDir[0].x, robot.bracoDir[0].y);

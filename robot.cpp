@@ -216,7 +216,6 @@ void keyEvent(unsigned char key, int x, int y) {
         case 'm':
             if (robot.bracoDir[0].x != 18) {
                 for (int i = 0; i < 4; i++) {
-
                     robot.cabeca[i].x++;
                     robot.corpo[i].x++;
                     robot.bracoEsq[i].x++;

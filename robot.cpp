@@ -109,9 +109,12 @@ void draw() {
 
     glColor3f(cores.bracos.r, cores.bracos.g, cores.bracos.b);
 
-    glTranslatef(robot.bracoEsq[0].x, robot.bracoEsq[0].y, 0);
+    float pontoMedioEsqX = (robot.bracoEsq[0].x + robot.bracoEsq[1].x) / 2;
+    float pontoMedioEsqY = (robot.bracoEsq[0].y + robot.bracoEsq[1].y) / 2;
+
+    glTranslatef(pontoMedioEsqX, pontoMedioEsqY, 0);
     glRotatef(rotBracoEsq, 0.0, 0.0, 1.0);
-    glTranslatef(-robot.bracoEsq[0].x, -robot.bracoEsq[0].y, 0);
+    glTranslatef(-pontoMedioEsqX, -pontoMedioEsqY, 0);
 
     glBegin(GL_QUADS);
         glVertex2f(robot.bracoEsq[0].x, robot.bracoEsq[0].y);
@@ -127,9 +130,12 @@ void draw() {
 
     glColor3f(cores.bracos.r, cores.bracos.g, cores.bracos.b);
 
-    glTranslatef(robot.bracoDir[0].x, robot.bracoDir[0].y, 0);
+    float pontoMedioDirX = (robot.bracoDir[0].x + robot.bracoDir[1].x) / 2;
+    float pontoMedioDirY = (robot.bracoDir[0].y + robot.bracoDir[1].y) / 2;
+
+    glTranslatef(pontoMedioDirX, pontoMedioDirY, 0);
     glRotatef(rotBracoDir, 0.0, 0.0, 1.0);
-    glTranslatef(-robot.bracoDir[0].x, -robot.bracoDir[0].y, 0);
+    glTranslatef(-pontoMedioDirX, -pontoMedioDirY, 0);
 
     glBegin(GL_QUADS);
         glVertex2f(robot.bracoDir[0].x, robot.bracoDir[0].y);

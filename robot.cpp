@@ -40,6 +40,12 @@ struct s_coresRobot {
     {1, 1, 0}           // Cor amarela.
 };
 
+int rotBracoEsq = 0;
+int rotBracoDir = 0;
+
+int bei = 0;
+int bdi = 0;
+
 void init();
 void draw();
 void mouseEvent(int, int, int, int);
@@ -106,6 +112,10 @@ void draw() {
 
     glColor3f(cores.bracos.r, cores.bracos.g, cores.bracos.b);
 
+    glTranslatef(robot.bracoEsq[bei].x, robot.bracoEsq[bei].y, 0);
+    glRotatef(rotBracoEsq, 0.0, 0.0, 1.0);
+    glTranslatef(-robot.bracoEsq[bei].x, -robot.bracoEsq[bei].y, 0);
+
     glBegin(GL_QUADS);
         glVertex2f(robot.bracoEsq[0].x, robot.bracoEsq[0].y);
         glVertex2f(robot.bracoEsq[1].x, robot.bracoEsq[1].y);
@@ -119,6 +129,10 @@ void draw() {
     glPushMatrix();
 
     glColor3f(cores.bracos.r, cores.bracos.g, cores.bracos.b);
+
+    glTranslatef(robot.bracoDir[bdi].x, robot.bracoDir[bdi].y, 0);
+    glRotatef(rotBracoDir, 0.0, 0.0, 1.0);
+    glTranslatef(-robot.bracoDir[bdi].x, -robot.bracoDir[bdi].y, 0);
 
     glBegin(GL_QUADS);
         glVertex2f(robot.bracoDir[0].x, robot.bracoDir[0].y);
@@ -203,48 +217,49 @@ void keyEvent(unsigned char key, int x, int y) {
 
     switch (key) {
         case 'm':
-            for (int i = 0; i < 4; i++) {
-                robot.cabeca[i].x++;
-                robot.corpo[i].x++;
-                robot.bracoEsq[i].x++;
-                robot.bracoDir[i].x++;
-                robot.pernaEsq[i].x++;
-                robot.pernaDir[i].x++;
+            if (robot.bracoDir[0].x != 18) {
+                for (int i = 0; i < 4; i++) {
+
+                    robot.cabeca[i].x++;
+                    robot.corpo[i].x++;
+                    robot.bracoEsq[i].x++;
+                    robot.bracoDir[i].x++;
+                    robot.pernaEsq[i].x++;
+                    robot.pernaDir[i].x++;
+                }
             }
             break;
         case 'M':
-            for (int i = 0; i < 4; i++) {
-                robot.cabeca[i].x--;
-                robot.corpo[i].x--;
-                robot.bracoEsq[i].x--;
-                robot.bracoDir[i].x--;
-                robot.pernaEsq[i].x--;
-                robot.pernaDir[i].x--;
+            if (robot.bracoEsq[0].x != -18) {
+                for (int i = 0; i < 4; i++) {
+                    robot.cabeca[i].x--;
+                    robot.corpo[i].x--;
+                    robot.bracoEsq[i].x--;
+                    robot.bracoDir[i].x--;
+                    robot.pernaEsq[i].x--;
+                    robot.pernaDir[i].x--;
+                }
             }
             break;
         case 'i':
-            robot.bracoDir[0].y++;
-            robot.bracoDir[1].y++;
-            robot.bracoDir[2].y++;
-            robot.bracoDir[3].y++;
+            if (rotBracoDir < 180) {
+                rotBracoDir+=5;
+            }
             break;
         case 'I':
-            robot.bracoDir[0].y--;
-            robot.bracoDir[1].y--;
-            robot.bracoDir[2].y--;
-            robot.bracoDir[3].y--;
+            if (rotBracoDir > 0) {
+                rotBracoDir-=5;
+            }
             break;
         case 'p':
-            robot.bracoEsq[0].y++;
-            robot.bracoEsq[1].y++;
-            robot.bracoEsq[2].y++;
-            robot.bracoEsq[3].y++;
+            if (rotBracoEsq > -180) {
+                rotBracoEsq-=5;
+            }
             break;
         case 'P':
-            robot.bracoEsq[0].y--;
-            robot.bracoEsq[1].y--;
-            robot.bracoEsq[2].y--;
-            robot.bracoEsq[3].y--;
+            if (rotBracoEsq < 0) {
+                rotBracoEsq+=5;
+            }
             break;
         default:
             break;
